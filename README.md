@@ -2,8 +2,8 @@
 
 ## Overview
 This is a FastAPI-based Student Management System with MongoDB backend.
-LIVE: https://student-management-system-api-ocpb.onrender.com
-Postman: https://documenter.getpostman.com/view/31555061/2sAYBYeVA3
+- LIVE: https://student-management-system-api-ocpb.onrender.com
+- Postman: https://documenter.getpostman.com/view/31555061/2sAYBYeVA3
 
 ## Setup
 
