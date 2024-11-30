@@ -40,13 +40,14 @@ async def fetch_student(id: str):
         raise HTTPException(status_code=404, detail="Student not found")
     return format_id(student)
 
-@router.patch("/students/{id}", status_code=204)
+@router.patch("/students/{id}", status_code=200)
 async def update_student(id: str, student: StudentUpdate):
     update_data = {k: v for k, v in student.dict().items() if v is not None}
     result = await db.students.update_one({"_id": ObjectId(id)}, {"$set": update_data})
     if not result.matched_count:
         raise HTTPException(status_code=404, detail="Student not found")
-    return
+    return {"message": "Student updated successfully"}
+
 
 @router.delete("/students/{id}", status_code=204)
 async def delete_student(id: str):
