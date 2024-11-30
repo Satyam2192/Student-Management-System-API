@@ -49,9 +49,10 @@ async def update_student(id: str, student: StudentUpdate):
     return {"message": "Student updated successfully"}
 
 
-@router.delete("/students/{id}", status_code=204)
+@router.delete("/students/{id}", status_code=200)
 async def delete_student(id: str):
     result = await db.students.delete_one({"_id": ObjectId(id)})
     if not result.deleted_count:
         raise HTTPException(status_code=404, detail="Student not found")
-    return
+    return {"message": "Student deleted successfully"}
+
