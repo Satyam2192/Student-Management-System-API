@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException
 from models import StudentCreate, StudentUpdate, StudentResponse
 from database import db
 from bson import ObjectId
@@ -8,6 +8,7 @@ from bson.errors import InvalidId
 router = APIRouter()
 
 def format_id(data):
+    """Reformats MongoDB's _id to id."""
     if data:
         data['id'] = str(data.pop('_id'))
     return data
@@ -25,9 +26,8 @@ async def list_students(country: str = None, age: int = None):
         query["address.country"] = country
     if age:
         query["age"] = {"$gte": age}
-    students = await db.students.find(query).to_list(100)
+    students = await db.students.find(query).to_list(length=100)
     return [format_id(student) for student in students]
-
 
 @router.get("/students/{id}", response_model=StudentResponse)
 async def fetch_student(id: str):
