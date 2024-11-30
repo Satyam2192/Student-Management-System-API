@@ -7,7 +7,7 @@ This is a FastAPI-based Student Management System with MongoDB backend.
 
 1. Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Satyam2192/Student-Management-System-API.git
 cd student_management
 ```
 
